@@ -1,15 +1,26 @@
 version: "3.9"
 
 services:
+  mysql:
+    container_name: mysql
+    image: mysql/mysql-server:8.0.32
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    restart: always
+
   rabbitmq:
     image: rabbitmq:3.10-management
     container_name: rabbitmq
     restart: always
     ports:
-      - 5672:5672
-      - 15672:15672
+      - '5672:5672'
+      - '15672:15672'
     volumes:
       - ./dados:/var/lib/rabbitmq/
     environment:
-      - RABBITMQ_DEFAULT_USER=jacqueline
-      - RABBITMQ_DEFAULT_PASS=alura
+      - RABBITMQ_DEFAULT_USER=teste
+      - RABBITMQ_DEFAULT_PASS=T&sT3
